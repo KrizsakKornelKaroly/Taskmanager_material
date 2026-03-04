@@ -13,4 +13,12 @@ export class ApiService {
   selectAll(table: string) {
     return this.http.get(`${this.server}/${table}`);
   }
+
+  delete(table: string, id: string) {
+    return this.http.delete(`${this.server}/${table}/${id}`);
+  }
+
+  update(table: string, id: string, data: any) {
+    return this.http.patch(`${this.server}/${table}/${id}`, data);
+  }
 }
