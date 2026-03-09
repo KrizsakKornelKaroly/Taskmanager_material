@@ -21,4 +21,8 @@ export class ApiService {
   update(table: string, id: string, data: any) {
     return this.http.patch(`${this.server}/${table}/${id}`, data);
   }
+
+  create(table: string, data: any) {
+    return this.http.post(`${this.server}/${table}`, data);
+  }
 }
