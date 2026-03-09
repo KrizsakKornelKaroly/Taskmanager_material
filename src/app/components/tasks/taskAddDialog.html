@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Add Task</h2>
+<mat-dialog-content>
+  <form [formGroup]="addTaskForm">
+    <mat-form-field appearance="outline" style="width: 100%; margin-top: 8px;">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+      <mat-error *ngIf="addTaskForm.get('title')?.hasError('required') && addTaskForm.get('title')?.touched">
+        Title is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" />
+      <mat-error *ngIf="addTaskForm.get('description')?.hasError('required') && addTaskForm.get('description')?.touched">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>User</mat-label>
+      <mat-select formControlName="userId">
+        <mat-option *ngFor="let user of users" [value]="user.id">{{ user.name }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="addTaskForm.get('userId')?.hasError('required') && addTaskForm.get('userId')?.touched">
+        User is required
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="formValue" [disabled]="addTaskForm.invalid"
+    cdkFocusInitial>Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Edit task</h2>
+<mat-dialog-content>
+    <form>
+        <mat-form-field appearance="outline" style="width: 100%; margin-top: 8px;">
+            <mat-label>Title</mat-label>
+            <input matInput [(ngModel)]="data.title" name="title" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Description</mat-label>
+            <input matInput [(ngModel)]="data.description" name="description" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>User</mat-label>
+            <mat-select [(ngModel)]="data.userId" name="userId">
+                <mat-option *ngFor="let user of users" [value]="user.id">{{ user.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div style="width: 100%; margin-top: 8px; margin-bottom: 8px;">
+            <mat-checkbox [(ngModel)]="data.completed" name="completed">Completed</mat-checkbox>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
